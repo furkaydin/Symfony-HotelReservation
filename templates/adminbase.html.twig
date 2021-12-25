@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {% block head %} {% include('admin/head.html.twig') %} {% endblock %}
+
+    </head>
+    <body>
+    {% block header %}{% include('admin/header.html.twig')%} {% endblock %}
+    {% block sidebar %} {%  include('admin/sidebar.html.twig') %}  {% endblock %}
+    {% block body %}{% endblock %}
+    {% block footer %} {% include('admin/footer.html.twig')%}{% endblock %}
+    </body>
+</html>
