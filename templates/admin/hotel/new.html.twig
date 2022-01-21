@@ -1,0 +1,12 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}New Hotel{% endblock %}
+
+{% block body %}
+<div class="page-wrapper" style="min-height: 250px;">
+    <h1>Create new Hotel</h1>
+
+    {{ include('admin/hotel/_form.html.twig') }}
+
+    <a href="{{ path('admin_hotel_index') }}">back to list</a>
+{% endblock %}

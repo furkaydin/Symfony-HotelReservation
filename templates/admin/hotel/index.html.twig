@@ -1,0 +1,60 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Hotel index{% endblock %}
+
+{% block body %}
+<div class="page-wrapper" style="min-height: 250px;">
+    <h1>Hotel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+
+                <th>Image</th>
+                <th>Star</th>
+                <th>Address</th>
+                <th>Phone</th>
+
+                <th>Email</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Location</th>
+                <th>Status</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel in hotels %}
+            <tr>
+                <td>{{ hotel.category }} {{ hotel.id }}</td>
+                <td>{{ hotel.title }}</td>
+
+                <td><img src="{{ asset('uploads/images/' ~ hotel.image) }}" height="80"> </td>
+                <td>{{ hotel.star }}</td>
+                <td>{{ hotel.address }}</td>
+                <td>{{ hotel.phone }}</td>
+
+                <td>{{ hotel.email }}</td>
+                <td>{{ hotel.city }}</td>
+                <td>{{ hotel.country }}</td>
+                <td>{{ hotel.location }}</td>
+                <td>{{ hotel.status }}</td>
+
+                <td>
+                    <a href="{{ path('admin_hotel_show', {'id': hotel.id}) }}">show</a>
+                    <a href="{{ path('admin_hotel_edit', {'id': hotel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="17">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_hotel_new') }}">Create new</a>
+{% endblock %}
