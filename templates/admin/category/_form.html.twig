@@ -1,0 +1,70 @@
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+<div class="col-lg-8 col-xlg-9 col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <form class="form-horizontal form-material" name="category" method="post">
+                <div class="form-group mb-4">
+                    <label class="col-sm-12">Parent</label>
+
+                    <div class="col-sm-12 border-bottom">
+
+                        <select class="form-select shadow-none p-0 border-0 form-control-line"  id="category_parentid" name="category[parentid]" >
+                            <option value="0">Main Category</option>
+                            {% for cat in categories %}
+                                <option value="{{ cat.id }}" {{ cat.id==category.parentid ? 'Selected': ''}} >{{ cat.title }}</option>
+                            {% endfor %}
+
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="example-email" class="col-md-12 p-0">Category Name</label>
+                    <div class="col-md-12 border-bottom p-0">
+                        <input type="text" placeholder="" class="form-control p-0 border-0" name="category[title]" id="category_title" value="{{ category.title }}">
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <label class="col-md-12 p-0">Keywords</label>
+                    <div class="col-md-12 border-bottom p-0">
+                        <input type="text" id="category_keywords" name="category[keywords]" class="form-control p-0 border-0" value="{{ category.keywords }}">
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <label class="col-md-12 p-0">Description</label>
+                    <div class="col-md-12 border-bottom p-0">
+                        <input type="text" placeholder="" id="category_description" name="category[description]" class="form-control p-0 border-0" value="{{ category.description }}">
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <label class="col-md-12 p-0">Image</label>
+                    <div class="col-md-12 border-bottom p-0">
+                        <input type="text" placeholder="" id="category_image" name="category[image]" class="form-control p-0 border-0">
+                    </div>
+
+                <div class="form-group mb-4">
+                    <label class="col-sm-12">Status</label>
+
+                    <div class="col-sm-12 border-bottom">
+
+                        <select class="form-select shadow-none p-0 border-0 form-control-line" id="category_status" name="category[status]" >
+                            <option>{{ category.status }}</option>
+                            <option>True</option>
+                            <option>False</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <div class="col-sm-12">
+                        <button class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
