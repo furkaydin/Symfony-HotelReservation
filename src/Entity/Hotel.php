@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HotelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -101,6 +103,16 @@ class Hotel
      * @ORM\Column(type="text", nullable=true)
      */
     private $detail;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="hotel")
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -207,6 +219,10 @@ class Hotel
     {
         return $this->email;
     }
+    public function __toString()
+    {
+        return $this->title;
+    }
 
     public function setEmail(?string $email): self
     {
@@ -307,6 +323,36 @@ class Hotel
     public function setDetail(?string $detail): self
     {
         $this->detail = $detail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getHotel() === $this) {
+                $image->setHotel(null);
+            }
+        }
 
         return $this;
     }

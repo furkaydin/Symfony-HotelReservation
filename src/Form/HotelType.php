@@ -26,13 +26,13 @@ class HotelType extends AbstractType
             ->add('keywords')
             ->add('description')
             ->add('image', FileType::class,[
-                'label'=> 'Hotel Main Image',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
+                'label'=>'Hotel Gellery Image',
+                'mapped'=>false,
+                'required'=>false,
+                'constraints'=>[
                     new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes'=> [
+                        'maxSize'=>'4096k',
+                        'mimeTypes'=>[
                             'image/*',
                         ],
                         'mimeTypesMessage'=>'Please upload a valid Image File',

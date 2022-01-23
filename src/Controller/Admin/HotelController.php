@@ -125,4 +125,8 @@ class HotelController extends AbstractController
 
         return $this->redirectToRoute('admin_hotel_index', [], Response::HTTP_SEE_OTHER);
     }
+    public function __toString()
+    {
+        return $this->title;
+    }
 }
