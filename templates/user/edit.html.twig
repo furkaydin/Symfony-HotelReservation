@@ -1,8 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
+<div class="page-wrapper" style="min-height: 250px;">
     <h1>Edit User</h1>
 
     {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}

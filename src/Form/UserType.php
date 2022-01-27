@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\CallbackTransformer;
 
 class UserType extends AbstractType
 {
@@ -66,6 +67,18 @@ class UserType extends AbstractType
 
             ])
         ;
+
+        $builder->get('roles')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($rolesArray) {
+                    // transform the array to a string
+                    return count($rolesArray)? $rolesArray[0]: null;
+                },
+                function ($rolesString) {
+                    // transform the string back to an array
+                    return [$rolesString];
+                }
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void

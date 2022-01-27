@@ -4,9 +4,10 @@
 
 {% block body %}
 <div class="page-wrapper" style="min-height: 250px;">
+
     <h1>Create new User</h1>
 
-    {{ include('user/_form.html.twig') }}
+    {{ include('admin/user/_form.html.twig') }}
 
-    <a href="{{ path('user_index') }}">back to list</a>
+    <a href="{{ path('admin_user_index') }}">back to list</a>
 {% endblock %}
