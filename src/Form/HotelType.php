@@ -62,12 +62,14 @@ class HotelType extends AbstractType
             ->add('city',ChoiceType::class,[
                 'choices'=>[
                     'Ankara'=>'Ankara',
-                    'Bursa'=>'Bursa'],
+                    'Bursa'=>'Bursa',
+                    'Antalya'=>'Antalya',
+                    'Muğla'=>'Muğla'],
             ])
             ->add('country',ChoiceType::class,[
                 'choices'=>[
-                    'Ankara'=>'Ankara',
-                    'Bursa'=>'Bursa'],
+                    'Türkiye'=>'Türkiye',
+                    'İspanya'=>'İspanya'],
 
             ])
             ->add('location')
@@ -77,7 +79,7 @@ class HotelType extends AbstractType
                     'False'=>'False'],
 
             ])
-            ;
+        ;
 
 
 

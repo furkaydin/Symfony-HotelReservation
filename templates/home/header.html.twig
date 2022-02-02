@@ -85,6 +85,7 @@
                     <a href="/user"><img src="{{ asset('/uploads/images/' ~ app.user.image) }}" alt="user-img" width="36"
                          class="img-circle"></a>
                     <a class="btn btn-custom" href="/user">{{ app.user.name }} {{ app.user.surname }}</a>
+                    <a class="btn btn-custom" href="/logout">Logout</a>
                 {% else %}
                         <div class="ml-auto">
                             <a class="btn btn-custom" href="/loginuser">Login</a>
