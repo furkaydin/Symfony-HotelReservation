@@ -23,7 +23,8 @@
                 <th>Email</th>
                 <th>City</th>
                 <th>Country</th>
-                <th>Location</th>
+                <th>İmage Galeri</th>
+                <th>Rooms</th>
                 <th>Status</th>
 
                 <th>actions</th>
@@ -47,6 +48,11 @@
                 <td>
                     <a href="javascript:openWin('{{ path('admin_image_new',{'id':hotel.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBar=yes,resizable=no,width=900,height=600');">
                         <img src="{{ asset('assets/admin/img') }}/galeri1.png" height="40">
+                    </a>
+                </td>
+                <td>
+                    <a href="javascript:openWin('{{ path('admin_room_new',{'id':hotel.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBar=yes,resizable=no,width=900,height=600');">
+                        <img src="{{ asset('assets/admin/img') }}/room.jpg" height="40">
                     </a>
                 </td>
                 <td>{{ hotel.location }}</td>
