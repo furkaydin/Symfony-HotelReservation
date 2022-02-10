@@ -9,7 +9,7 @@
 <div class="page-wrapper" style="min-height: 250px;">
     <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="sidebar-widget">
                 <div class="tab-post">
                     <ul class="nav nav-pills nav-justified">
@@ -26,66 +26,41 @@
 
                     <div class="tab-content">
                         <div id="featured" class="container tab-pane active">
-                            <div class="post-item">
-                                <div class="post-img">
-                                    <img src="img/post-1.jpg">
-                                </div>
-                                <div class="post-text">
-                                    <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                    <div class="post-meta">
-                                        <p>By<a href="">Admin</a></p>
-                                        <p>In<a href="">Web Design</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-item">
-                                <div class="post-img">
-                                    <img src="img/post-2.jpg">
-                                </div>
-                                <div class="post-text">
-                                    <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                    <div class="post-meta">
-                                        <p>By<a href="">Admin</a></p>
-                                        <p>In<a href="">Web Design</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-item">
-                                <div class="post-img">
-                                    <img src="img/post-3.jpg">
-                                </div>
-                                <div class="post-text">
-                                    <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                    <div class="post-meta">
-                                        <p>By<a href="">Admin</a></p>
-                                        <p>In<a href="">Web Design</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-item">
-                                <div class="post-img">
-                                    <img src="img/post-4.jpg">
-                                </div>
-                                <div class="post-text">
-                                    <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                    <div class="post-meta">
-                                        <p>By<a href="">Admin</a></p>
-                                        <p>In<a href="">Web Design</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-item">
-                                <div class="post-img">
-                                    <img src="img/post-5.jpg">
-                                </div>
-                                <div class="post-text">
-                                    <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
-                                    <div class="post-meta">
-                                        <p>By<a href="">Admin</a></p>
-                                        <p>In<a href="">Web Design</a></p>
-                                    </div>
-                                </div>
-                            </div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Image</th>
+                                    <th>Price</th>
+
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for room in rooms %}
+                                    <tr>
+
+                                        <td>{{ room.title }}</td>
+                                        <td>{{ room.description }}</td>
+                                        <td><img src="{{ asset('uploads/images/' ~ room.image) }}" height="120"></td>
+                                        <td>{{ room.price }}</td>
+                                        <td>
+                                            <form action="{{ path('user_reservation_new', {'hid': room.hotelid ,'rid': room.id}) }}">
+                                            Days <input type="number" id="days" name="days" value="1">
+                                                <input type="submit" value="Reserve Room" class="btn btn-info">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="9">no room found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
                         </div>
                         <div id="popular" class="container tab-pane fade">
 

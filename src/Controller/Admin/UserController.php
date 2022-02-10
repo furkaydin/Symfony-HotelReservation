@@ -2,8 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Admin\Reservation;
 use App\Entity\User;
+use App\Form\Admin\ReservationType;
 use App\Form\UserType;
+use App\Repository\Admin\RoomRepository;
+use App\Repository\HotelRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -119,6 +123,14 @@ class UserController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName(){
+        return md5(uniqid());
+    }
+
     /**
      * @Route("/{id}", name="admin_user_delete", methods={"POST"})
      */
@@ -131,10 +143,7 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
     }
-    /**
-     * @return string
-     */
-    private function generateUniqueFileName(){
-        return md5(uniqid());
-    }
+
+
+
 }

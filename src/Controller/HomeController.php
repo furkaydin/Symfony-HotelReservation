@@ -7,6 +7,7 @@ use App\Entity\Hotel;
 use App\Entity\Setting;
 use App\Form\Admin\MessagesType;
 use App\Repository\Admin\CommentRepository;
+use App\Repository\Admin\RoomRepository;
 use App\Repository\HotelRepository;
 use App\Repository\ImageRepository;
 use App\Repository\SettingRepository;
@@ -25,9 +26,9 @@ class HomeController extends AbstractController
     public function index(SettingRepository $settingRepository, HotelRepository $hotelRepository): Response
     {
         $setting=$settingRepository->findAll();
-        $slider=$hotelRepository->findBy(array(),array(),3);
-        $hotels=$hotelRepository->findBy(array(),array(),4);
-        $newhotels=$hotelRepository->findBy(array(),array(),10);
+        $slider=$hotelRepository->findBy(['status'=>'True'],['title'=>'ASC'] ,3);
+        $hotels=$hotelRepository->findBy(['status'=>'True'],['title'=>'DESC'] ,4);
+        $newhotels=$hotelRepository->findBy(['status'=>'True'],['title'=>'DESC'] ,10);
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
@@ -85,15 +86,17 @@ class HomeController extends AbstractController
     /**
      * @Route("/{id}", name="hotel_show", methods={"GET"})
      */
-    public function show(Hotel $hotel,$id, ImageRepository $imageRepository, CommentRepository $commentRepository): Response
+    public function show(Hotel $hotel,$id, ImageRepository $imageRepository, CommentRepository $commentRepository, RoomRepository $roomRepository): Response
     {
         $images=$imageRepository->findBy(['hotel'=>$id]);
-        $comments=$commentRepository->findBy(['hotelid'=>$id,'status'=>'True']);
+        $comments=$commentRepository->findBy(['hotelid'=>$id, 'status'=>'True']);
+        $rooms =$roomRepository->findBy(['hotelid'=>$id, 'status'=>'True']);
 
         return $this->render('home/hotelshow.html.twig', [
             'hotel' => $hotel,
             'images' => $images,
-            'comments'=>$comments,
+            'rooms' => $rooms,
+            'comments' => $comments,
         ]);
     }
 
